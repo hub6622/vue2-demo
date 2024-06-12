@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>{{name}}</h1>
+    <h1>{{age}}</h1>
+    <h1>{{people.name}}</h1>
+    <button @Click="sleep()">sj</button>
+    <button @Click="eat">cf</button>
+    <div v-show="false">66666666666666666666666666666666666</div>
+</div>
+</body>
+<script>
+    new Vue({
+      el:"#root",
+      data:{
+          name:"xiaowangba",
+          age:88,
+          people:{
+              name: "wb",
+              age:888
+          }
+      },
+      methods:{
+          sleep(){
+              console.log("sleep")
+          },
+          eat:function (){
+              alert("eat")
+          }
+      }
+    })
+</script>
+</html>
