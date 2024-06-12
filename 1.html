@@ -13,12 +13,17 @@
     <button @Click="sleep()">sj</button>
     <button @Click="eat">cf</button>
     <div v-show="false">66666666666666666666666666666666666</div>
+    <div v-show="showtrue">77777777777777777777777777777777777</div>
+    <div v-if="iftrue">ififiififififiififififiifififififiifififi</div>
+    <button @click="showOrNotShow">showOrNotShow</button>
 </div>
 </body>
 <script>
     new Vue({
       el:"#root",
       data:{
+          iftrue:true,
+          showtrue:false,
           name:"xiaowangba",
           age:88,
           people:{
@@ -32,6 +37,9 @@
           },
           eat:function (){
               alert("eat")
+          },
+          showOrNotShow:function (){
+              return this.iftrue=!this.iftrue;
           }
       }
     })
