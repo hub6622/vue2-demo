@@ -26,8 +26,14 @@
     </ul>
     <h1>绑定</h1>
     <input type="text" :value="text1"><br>
-    <input type="text" v-model="msg">
-    <h1>{{msg}}</h1>
+    <button @click="changeText">切换文字</button><br>
+    <input type="text" v-model.lazy="msg">
+    <h1>输入框中的值：{{msg}}</h1>
+
+    <h1>v-for</h1>
+    <ul>
+        <li v-for="(item, index) in vegetables" :key="item.id">{{item.name}}</li>
+    </ul>
 </div>
 </body>
 <script>
@@ -36,7 +42,17 @@
         data:{
             list:[123,1234,12345],
             text1:"bind绑定",
-            msg:"model绑定的msg"
+            msg:"model绑定的msg",
+            vegetables:[{id:1, name:"zzz"},{id:1, name:"yyy"},{id:2, name:"ppp"},{id:3, name:"ooo"},{id:4, name:"iii"},{id:5, name:"aaa"},{id:6, name:"ttt"}]
+        },
+        methods: {
+            changeText(){
+                if(this.text1==="bind绑定"){
+                    this.text1="切换了文字信息"
+                }else{
+                    this.text1="bind绑定"
+                }
+            }
         }
     })
     new Vue({
