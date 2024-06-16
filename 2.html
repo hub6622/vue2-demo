@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body> 
+    <div id="app">
+        <component-button></component-button>
+    </div>
+    <script>
+        Vue.component('component-button', {
+            template: '<button @click="num+=1">当前点击了{{num}}次</button>',
+            data() {
+                return {
+                    num: 0
+                }
+            },
+        });
+        var app = new Vue({
+            el: '#app',
+            data: {
+                dd: 'test'
+            }
+        })
+    </script>
+</body>
+</html>
