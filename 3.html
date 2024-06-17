@@ -58,6 +58,7 @@
                 color: {
                     inserted(el, bind) {
                         let color = bind.value || "red";
+                        console.log('@@' + color);
                         el.style.color = color;
                     }
                 }
