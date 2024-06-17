@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-focus placeholder="请输入用户名">
+        <p v-red>v-red</p>
+        <p v-test="100" v-color="'orange'">测试指令</p>
+    </div>
+
+    <script>
+        Vue.directive('focus', {
+            inserted(el) {
+                console.log(el);
+                el.focus()
+            }
+        })
+        let vm = new Vue({
+            el: "#app",
+            data: {},
+            methods: {},
+            directives: {
+                red: {
+                    inserted(el) {
+                        el.style.color = "red"
+                    }
+                },
+                test: {
+                    bind(el) {
+                        console.log('bind函数只会调用一次,指令第一次被绑定到元素被触发');
+                    },
+                    inserted(el, binding, vnode, oldVnode) {
+                        /*
+                         * el表示当顶了该指令的dom对象
+                         * binding是一个包含了指令各种信息的对象：指令名，指令值，指令表达式和一个包含了修饰符的对象
+                         * */
+                        console.log(el);
+                        console.log(binding);
+                        console.log(vnode);
+                        console.log('inserted函数在组件被渲染时候调用');
+                    },
+                    update() {
+                        console.log('update函数在所有组件的VNode对象更新时调用');
+                    },
+                    componentUpdated() {
+                        console.log('componentUpdated指令所在组件的VNode对象和其子类VNode对象全部更新后调用');
+                    },
+                    unbind() {
+                        console.log('unbind指令解绑时候被调用');
+                    }
+                },
+                color: {
+                    inserted(el, bind) {
+                        let color = bind.value || "red";
+                        el.style.color = color;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
