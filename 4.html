@@ -7,49 +7,39 @@
 </head>
 <body>
 <div id="root">
-    <hello :user="username"></hello>
-    <hello1></hello1>
+<!--    <hello :user="username"></hello>-->
+    <hello1 :demo="school"></hello1>
+    <hello2 @ss="sss($event)"></hello2>
 </div>
 <script>
-    Vue.component("hello", {
-        template: `
-        <div>
-            <h1>Hello!!!!!!</h1>
-            <h2>{{user}}</h2>
-            <div>55555</div>
-            <input type="text">
-        </div>
-        `,
-        data() {
-            return {
-                school: 'zjitc',
-                city: 'wenzhou'
-            }
-        },
-        props:["user"],
-        methods: {
-            demo(){
-                console.log(this.school)
-                console.log(this.city)
-            }
-        }
-    })
-
     let eggg = new Vue({
+        el:"#root",
         data: {
-            username: "xjl666"
+            school: "zjitc"
+        },
+        methods:{
+            sss(args){
+                console.log("接收到了"+args)
+            }
         },
         components: {
             hello1: {
-                template: '<a>{{username}}</a>',
+                name:"hello1",
+                template: `
+                    <div>
+                        <div>{{msg}}</div>
+                        <div>接收到了值：{{demo}}</div>
+                    </div>
+                `,
                 data() {
                     return {
                         school: 'zjitc',
                         city: 'wenzhou',
-                        username: 'wangba'
+                        username: 'wangba',
+                        msg:'hello111111'
                     }
                 },
-                method: {
+                methods: {
                     eat() {
                         console.log("eat....")
                         console.log(this)
@@ -57,12 +47,31 @@
                     sleep() {
                         console.log("sleep....")
                     }
+                },
+                props: ['demo']
+            },
+            hello2: {
+                name:"hello2",
+                template:`
+                    <div>
+                        <div>{{msg}}</div>
+                        <button @click="m1()">点我传值</button>
+                    </div>
+
+                `,
+                data(){
+                    return{
+                        msg:'hello22222222'
+                    }
+                },
+                methods: {
+                    m1(){
+                        this.$emit("ss","你好吗？？？")
+                    }
                 }
             }
         }
     })
-    eggg.$mount("#root")
-    console.log(eggg.$data)
 </script>
 </body>
 </html>
