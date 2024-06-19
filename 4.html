@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <hello :user="username"></hello>
+    <hello1></hello1>
+</div>
+<script>
+    Vue.component("hello", {
+        template: `
+        <div>
+            <h1>Hello!!!!!!</h1>
+            <h2>{{user}}</h2>
+            <div>55555</div>
+            <input type="text">
+        </div>
+        `,
+        data() {
+            return {
+                school: 'zjitc',
+                city: 'wenzhou'
+            }
+        },
+        props:["user"],
+        methods: {
+            demo(){
+                console.log(this.school)
+                console.log(this.city)
+            }
+        }
+    })
+
+    let eggg = new Vue({
+        data: {
+            username: "xjl666"
+        },
+        components: {
+            hello1: {
+                template: '<a>{{username}}</a>',
+                data() {
+                    return {
+                        school: 'zjitc',
+                        city: 'wenzhou',
+                        username: 'wangba'
+                    }
+                },
+                method: {
+                    eat() {
+                        console.log("eat....")
+                        console.log(this)
+                    },
+                    sleep() {
+                        console.log("sleep....")
+                    }
+                }
+            }
+        }
+    })
+    eggg.$mount("#root")
+    console.log(eggg.$data)
+</script>
+</body>
+</html>
