@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue-router.js"></script>
+    <script src="vue.js"></script>
+</head>
+<body>
+<div id="root">
+    <hello></hello>
+    <hello1></hello1>
+<!--    <router-link to="/hello">跳转hello</router-link>-->
+<!--    <router-link to="/hello1">跳转hello1</router-link>-->
+<!--    <router-view></router-view>-->
+<!--    <a href="#/hello">hello</a>-->
+<!--    <a href="#/hello1">hello1</a>-->
+</div>
+<script>
+const router=new VueRouter({
+    routers:[
+        {path:'/hello',component:hello},
+        {path:'/hello1',component:hello1}
+    ]
+})
+new Vue({
+    el:"#root",
+    router: router,
+    components: {
+        hello: {
+            name:'hello',
+            template:"<div>hello</div>",
+            data(){
+                return{
+
+                }
+            }
+        },
+        hello1: {
+            name:'hello1',
+            template:"<div>hello1</div>",
+            data(){
+                return{
+
+                }
+            }
+        }
+
+    },
+})
+</script>
+</body>
+</html>
